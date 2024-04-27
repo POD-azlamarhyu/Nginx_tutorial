@@ -1,0 +1,18 @@
+services:
+  web:
+    container_name: nginx_container
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: ${U_ID}
+        GID: ${U_ID}
+        USERNAME: ${USER_NAME}
+        GROUPNAME: ${GROUP_NAME}
+    tty: true
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./html:/usr/share/nginx/html
+
